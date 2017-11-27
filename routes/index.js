@@ -7,11 +7,13 @@ router.get("/", function(req, res){
 });
 
 // USER routes
+// INDEX get route to view all users
 router.get("/users", function(req, res){
   req.getConnection(function(err, conn){
     if (err) {
       return next("Error: " + err);
     }
+    // define query that selects all users from database
     var query = conn.query("SELECT * FROM t_user", function(err, users){
       if (err) {
         console.log(err);
@@ -22,5 +24,11 @@ router.get("/users", function(req, res){
   });
 });
 
+// GET route for new user
+router.get("/users/new", function(req, res){
+  res.render("new");
+});
+
+// POST route
 
 module.exports = router;
