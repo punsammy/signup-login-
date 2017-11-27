@@ -58,7 +58,7 @@ router.post("/users/new", function(req, res){
       if (err) {
         return next("Error: " + err)
       }
-      res.sendStatus(200);
+      res.redirect("/users");
     });
   });
 
