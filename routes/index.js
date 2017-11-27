@@ -1,7 +1,21 @@
 var express    = require("express"),
     router     = express.Router(),
-    connection = require("express-myconnection"),
-    mysql      = require("mysql");
+    mysql      = require("mysql"),
+    connection = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "password",
+      database: "users",
+      debug: false
+    });
+
+connection.connect(function(err){
+  if (!err) {
+    console.log("Database is connected")
+  } else {
+    console.log("Error with database connection");
+  }
+});
 
 // INDEX route
 router.get("/", function(req, res){
@@ -56,6 +70,7 @@ router.post("/users/new", function(req, res){
     if (err) {
       return next("Error: " + err)
     }
+    // add data to t_user table
     var query = conn.query("INSERT INTO t_user set ? ", data, function(err, rows){
       if (err) {
         console.log("Error: " + err)
@@ -64,6 +79,38 @@ router.post("/users/new", function(req, res){
     });
   });
 
+});
+
+// LOGIN routes
+router.get("/login", function(req, res){
+  res.render("login");
+});
+
+router.post("/login", function(req, res){
+  // login credentials
+  var email = req.body.email;
+  var password = req.body.password;
+  // query to check t_user table to find email that matches user input
+  connection.query("SELECT * FROM t_user WHERE email=?", [email], function(err, results, fields){
+    if (err) {
+      console.log("Error: " + err);
+    } else {
+      console.log(results);
+      console.log("Result password: " + [0].password);
+      // if a result is returned check user input for password against password field in table
+      if (results.length > 0) {
+        if (results[0].password == password) {
+          res.redirect("/users");
+        } else {
+          res.redirect("/login");
+          console.log("Error: Email and Password do not match")
+        }
+      } else {
+        res.redirect("/login");
+        console.log("Error: Email does not exist");
+      }
+    }
+  })
 });
 
 module.exports = router;
