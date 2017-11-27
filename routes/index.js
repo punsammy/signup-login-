@@ -8,7 +8,7 @@ var express    = require("express"),
       database: "users",
       debug: false
     });
-
+// check to ensure database is connected
 connection.connect(function(err){
   if (!err) {
     console.log("Database is connected")
