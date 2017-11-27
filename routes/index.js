@@ -32,7 +32,7 @@ router.get("/users/new", function(req, res){
 });
 
 // POST route
-router.post("/users", function(req, res){
+router.post("/users/new", function(req, res){
   //validation - express-validator functions
   req.assert('name','Name is required').notEmpty();
   req.assert('email','Email address is required').isEmail();

@@ -2,7 +2,7 @@ function saveUser(){
 
    $.ajax({
 
-    url:"/user",
+    url:"/users",
     type:"post",
     data:$("#addUser").serialize(),
     success:function(res){
