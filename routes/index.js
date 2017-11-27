@@ -96,7 +96,6 @@ router.post("/login", function(req, res){
       console.log("Error: " + err);
     } else {
       console.log(results);
-      console.log("Result password: " + [0].password);
       // if a result is returned check user input for password against password field in table
       if (results.length > 0) {
         if (results[0].password == password) {
