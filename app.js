@@ -35,6 +35,6 @@ app.use(connection(mysql, {
 // Configure Routes
 app.use(indexRoutes);
 
-app.listen(process.env.PORT || 80, function(){
+app.listen(process.env.PORT, function(){
   console.log("Server is listening on port 80");
 });
