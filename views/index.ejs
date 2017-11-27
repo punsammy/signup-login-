@@ -8,6 +8,8 @@
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">Password</th>
+        <th scope="col">Date Added</th>
+
       </tr>
     </thead>
     <tbody>
@@ -18,6 +20,11 @@
           <td><%=data[i].name%></td>
           <td><%=data[i].email%></td>
           <td><%=data[i].password%></td>
+          <% if(!data[i].created){ %>
+            <td></td>
+          <% } else { %>
+            <td><%=data[i].created %></td>
+          <% } %>
         </tr>
       <% } } else{ %>
        <tr>
