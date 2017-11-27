@@ -10,6 +10,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(expressValidator());
 
+// MySQL Connection
+var connection = require("express-myconnection"),
+    mysql      = require("mysql");
+app.use(connection(mysql, {
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "users",
+  debug: false
+}, "request"));
+
 app.listen(process.env.PORT || 8080, function(){
   console.log("Server is listening on port 8080");
 });
