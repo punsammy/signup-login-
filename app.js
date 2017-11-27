@@ -10,6 +10,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(expressValidator());
 
+// Configure Routes
+var indexRoutes = require("./routes/index");
+app.use(indexRoutes);
+
 // MySQL Connection
 var connection = require("express-myconnection"),
     mysql      = require("mysql");
