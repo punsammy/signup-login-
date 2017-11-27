@@ -24,16 +24,17 @@ app.use(require("express-session")({
 var connection = require("express-myconnection"),
     mysql      = require("mysql");
 app.use(connection(mysql, {
-  host: "localhost",
-  user: "root",
-  password: "password",
-  database: "users",
+  host: "ca-cdbr-azure-east-a.cloudapp.net",
+  user: "b0e3368f25fb40",
+  password: "01f9318b",
+  database: "remitbee",
   debug: false
 }, "request"));
+
 
 // Configure Routes
 app.use(indexRoutes);
 
-app.listen(process.env.PORT || 8080, function(){
-  console.log("Server is listening on port 8080");
+app.listen(process.env.PORT || 80, function(){
+  console.log("Server is listening on port 80");
 });
