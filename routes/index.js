@@ -1,5 +1,7 @@
-var express  = require("express"),
-    router   = express.Router();
+var express    = require("express"),
+    router     = express.Router(),
+    connection = require("express-myconnection"),
+    mysql      = require("mysql");
 
 // INDEX route
 router.get("/", function(req, res){
@@ -8,7 +10,7 @@ router.get("/", function(req, res){
 
 // USER routes
 // INDEX get route to view all users
-router.get("/users", function(req, res){
+router.get("/users", function(req, res, next){
   req.getConnection(function(err, conn){
     if (err) {
       return next("Error: " + err);
@@ -41,6 +43,14 @@ router.post("/users", function(req, res){
     res.status(422).json(errs);
     return;
   }
+
+  // get data from form
+  var data = {
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password
+  }
+
 
 });
 
