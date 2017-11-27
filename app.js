@@ -1,6 +1,7 @@
 var expressValidator = require("express-validator"),
     bodyParser       = require("body-parser"),
     express          = require("express"),
+    session          = require("express-session"),
     app              = express();
 
 // Define routes
@@ -12,6 +13,12 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(expressValidator());
+// Session configuration
+app.use(require("express-session")({
+  secret: "Some secret",
+  resave: false,
+  saveUninitialized: false
+}));
 
 // MySQL Connection
 var connection = require("express-myconnection"),

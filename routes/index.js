@@ -90,6 +90,7 @@ router.post("/login", function(req, res){
   // login credentials
   var email = req.body.email;
   var password = req.body.password;
+  req.session.user = email;
   // query to check t_user table to find email that matches user input
   connection.query("SELECT * FROM t_user WHERE email=?", [email], function(err, results, fields){
     if (err) {
@@ -99,6 +100,7 @@ router.post("/login", function(req, res){
       // if a result is returned check user input for password against password field in table
       if (results.length > 0) {
         if (results[0].password == password) {
+          console.log(email);
           res.redirect("/users");
         } else {
           res.redirect("/login");
@@ -110,6 +112,14 @@ router.post("/login", function(req, res){
       }
     }
   })
+});
+
+
+// LOGOUT route
+router.get("/logout", function(req, res){
+  req.session.destroy(function(){
+    res.redirect("/");
+  });
 });
 
 module.exports = router;
