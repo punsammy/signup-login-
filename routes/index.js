@@ -30,5 +30,18 @@ router.get("/users/new", function(req, res){
 });
 
 // POST route
+router.post("/users", function(req, res){
+  //validation - express-validator functions
+  req.assert('name','Name is required').notEmpty();
+  req.assert('email','Email address is required').isEmail();
+  req.assert('password','Enter a password between 8 - 16 characters').len(8,16);
+
+  var errs = req.validationErrors();
+  if (errs) {
+    res.status(422).json(errs);
+    return;
+  }
+
+});
 
 module.exports = router;
