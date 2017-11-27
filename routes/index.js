@@ -43,14 +43,24 @@ router.post("/users", function(req, res){
     res.status(422).json(errs);
     return;
   }
-
   // get data from form
   var data = {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password
   }
-
+  // insert data to database
+  req.getConnection(function(err, conn){
+    if (err) {
+      return next("Error: " + err)
+    }
+    var query = conn.query("INSERT INTO t_user set ? ", data, function(err, rows){
+      if (err) {
+        return next("Error: " + err)
+      }
+      res.sendStatus(200);
+    });
+  });
 
 });
 
