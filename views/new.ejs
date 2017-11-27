@@ -1,6 +1,6 @@
 <% include ./partials/header %>
 
-<form class="" action="index.html" method="post">
+<form id="addUser" action="" method="post">
   <div class="">
     <label>Name</label>
     <input type="text" name="name">
@@ -13,7 +13,12 @@
     <label>Password</label>
     <input type="password" name="password">
   </div>
-  <button></button>
+  <button onClick="saveUser()"></button>
 </form>
 
+<div class="">
+  <p class="err-container"></p>
+</div>
+
+<script src="/js/users.js"></script>
 <% include ./partials/footer %>
