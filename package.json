@@ -1,0 +1,19 @@
+{
+  "name": "remitbee",
+  "version": "1.0.0",
+  "description": "Signup and Login Application ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amanda Punsammy",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-myconnection": "^1.0.4",
+    "express-validator": "^4.3.0",
+    "mysql": "^2.15.0"
+  }
+}
