@@ -2,10 +2,10 @@ var express    = require("express"),
     router     = express.Router(),
     mysql      = require("mysql"),
     connection = mysql.createConnection({
-      host: "localhost",
-      user: "root",
-      password: "password",
-      database: "users",
+      host: "ca-cdbr-azure-east-a.cloudapp.net",
+      user: "b0e3368f25fb40",
+      password: "01f9318b",
+      database: "remitbee",
       debug: false
     });
 // check to ensure database is connected
